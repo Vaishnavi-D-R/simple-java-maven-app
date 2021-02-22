@@ -1,15 +1,6 @@
 pipeline {
     agent any
     stages {
-        stage("build & SonarQube analysis") {
-            agent any
-            steps {
-              withSonarQubeEnv('sonar-server') {
-                sh 'java -version'
-                sh 'mvn clean package sonar:sonar'
-              }
-            }
-          }
         stage('Build') {
             steps {
                 sh 'mvn -B -DskipTests clean package'
@@ -30,5 +21,14 @@ pipeline {
                 sh './jenkins/scripts/deliver.sh'
             }
         }
+        stage("build & SonarQube analysis") {
+            agent any
+            steps {
+              withSonarQubeEnv('sonar-server') {
+                sh 'java -version'
+                sh 'mvn clean package sonar:sonar'
+              }
+            }
+          }
     }
 }
