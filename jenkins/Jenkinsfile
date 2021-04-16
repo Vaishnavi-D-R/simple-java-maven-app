@@ -1,7 +1,7 @@
 pipeline {
     agent any
   //  triggers {
-   //     cron(*****)
+   //     cron('* * * * *')
     //}
     tools{
         maven 'maven'
@@ -36,7 +36,11 @@ pipeline {
               }
             }
           }
-        
+        stage("Quality Gate") {
+        timeout(time: 1, unit: 'HOURS') {
+            waitForQualityGate abortPipeline: true
+        }
+     }
           stage('deploy to artifactory'){
             steps{
           
