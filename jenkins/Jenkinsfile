@@ -29,13 +29,18 @@ pipeline {
             }
         }
         stage("build & SonarQube analysis") {
-            agent any
+          //  agent any
             steps {
               withSonarQubeEnv('sonarQube') {
                 sh 'mvn clean package sonar:sonar'
               }
             }
           }
+         stage("Quality gate") {
+            steps {
+                waitForQualityGate abortPipeline: true
+            }
+         }
           stage('deploy to artifactory'){
             steps{
           
