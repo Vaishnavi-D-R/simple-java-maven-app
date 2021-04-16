@@ -38,4 +38,14 @@ pipeline {
           }
      
     }
+     post{
+                success{
+                    echo "========Deploying executed successfully========"
+                    mail bcc: '', body: 'deploying is sucesfull', cc: '', from: '', replyTo: '', subject: 'deployed', to: 'vaishnavidr123@gmail.com'
+                }
+                failure{
+                 echo "========Deploying failed========"
+                 mail bcc: '', body: 'deploying failed', cc: '', from: '', replyTo: '', subject: 'deployed', to: 'vaishnavidr123@gmail.com'
+                }
+            }
 }
