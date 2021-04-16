@@ -36,6 +36,40 @@ pipeline {
               }
             }
           }
+          stage('deploy to artifactory'){
+            steps{
+          
+                rtUpload (
+            serverId: 'ARTIFACTORY_SERVER',
+            spec: '''{
+                 "files": [
+                             {
+                                "pattern": "target/*.jar",
+                                "target": "art-doc-dev-loc/java/"
+                            }
+                        ]
+            }''',
+            )
+            }
+        }
+        
+        stage('download artifact'){
+            steps{
+           
+                 rtDownload (
+                 serverId: "ARTIFACTORY_SERVER",
+                spec:"""{
+                     "files": [
+                                {
+                                    "pattern": "art-doc-dev-loc/java/**",
+                                    "target": "src/artifacts/"      
+                                }
+                            ]
+              }"""
+            )
+            
+            }
+        }
      
     }
      post{
