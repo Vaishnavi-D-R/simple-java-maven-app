@@ -36,10 +36,20 @@ pipeline {
               }
             }
           }
-         stage("Quality gate") {
+         stage("Quality Gate") {
             steps {
-                waitForQualityGate abortPipeline: true
-            }
+               sleep(60)
+               timeout(time: 1, unit: 'HOURS') {
+                 script{
+                         def qg = waitForQualityGate() 
+                         if (qg.status != 'OK')
+                         {
+                             error "Pipeline aborted due to gate failure : ${qg.status}"
+                             waitForQualityGate abortPipeline: true
+                          }
+                     }
+               }
+             }
          }
           stage('deploy to artifactory'){
             steps{
