@@ -84,7 +84,7 @@ pipeline {
                      }
               }
            }*/
-         }
+         
         stage('upload to s3')
            {
               steps{
