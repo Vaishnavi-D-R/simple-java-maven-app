@@ -92,7 +92,10 @@ pipeline {
     // some block
 //}
         //withAWS(region:'us-west-1',credentials:'eaaf81ec-205e-40de-ad8f-a21281406850') {
-                    s3Upload(file: '/var/lib/jenkins/workspace/jfrog-artifactory/app/artifacts/todo-app/*.war', bucket:'vaishu2000', path:'artifacts/')
+                  //  s3Upload(file: '/var/lib/jenkins/workspace/jfrog-artifactory/app/artifacts/todo-app/*.war', bucket:'vaishu2000', path:'artifacts/')
+                      s3Upload(file: 'TodoDemo-0.0.1-SNAPSHOT.war', bucket:'vaishu2000', path:'artifacts/')
+
+                      
         }
               }
         }
