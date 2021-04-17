@@ -88,10 +88,10 @@ pipeline {
         stage('upload to s3')
            {
               steps{
-                  withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'deployto_s3', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY',region:'us-west-1')]) {
+                //  withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'deployto_s3', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY',region:'us-west-1')]) {
     // some block
 //}
-        //withAWS(region:'us-west-1',credentials:'eaaf81ec-205e-40de-ad8f-a21281406850') {
+        withAWS(region:'us-west-1',credentials:'deployto_s3') {
                   //  s3Upload(file: '/var/lib/jenkins/workspace/jfrog-artifactory/app/artifacts/todo-app/*.war', bucket:'vaishu2000', path:'artifacts/')
                       s3Upload(file: '/var/lib/jenkins/workspace/jfrog-artifactory/app/artifacts/todo-app/TodoDemo-0.0.1-SNAPSHOT.war', bucket:'vaishu2000', path:'artifacts/')
 
