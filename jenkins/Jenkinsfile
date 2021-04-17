@@ -79,7 +79,7 @@ pipeline {
            {
               steps{
           sshagent(['71b3e396-6b85-494e-ac21-18bdea4f6358']){
-                  // sh 'ssh -o StrictHostKeyChecking=no ubuntu@18.221.112.248 pwd'
+                   sh 'ssh -o StrictHostKeyChecking=no ubuntu@18.221.112.248 pwd'
                    sh 'scp -r /var/lib/jenkins/workspace/jfrog-artifactory/app/artifacts/todo-app/*.war ubuntu@18.221.112.248:/home/ubuntu/myartifacts'
                      }
               }
