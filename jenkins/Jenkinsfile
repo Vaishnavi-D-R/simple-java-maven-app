@@ -88,7 +88,7 @@ pipeline {
         stage('upload to s3')
            {
               steps{
-                  withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'deployto_s3', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
+                  withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'deployto_s3', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY',region:'us-west-1')]) {
     // some block
 //}
         //withAWS(region:'us-west-1',credentials:'eaaf81ec-205e-40de-ad8f-a21281406850') {
